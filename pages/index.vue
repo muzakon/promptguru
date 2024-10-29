@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-[120px]">
+  <div class="pt-[90px]">
     <div class="container mx-auto">
       <div class="w-full flex items-center h-[440px] gap-3">
         <div class="w-9/12">
@@ -116,8 +116,79 @@
           </div>
         </div>
 
-        <div class="bg-neutral-900 p-4">
-          <h3 class="uppercase font-semibold">Bests of the month</h3>
+        <div class="bg-neutral-900 p-5 mt-[24px] rounded-lg">
+          <h3 class="uppercase font-semibold text-[13px]">
+            Bests of the month
+          </h3>
+
+          <div class="mt-3 grid grid-rows-5 grid-flow-col gap-3">
+            <div
+              v-for="(item, index) in bestOfMonths"
+              :key="index"
+              class="hover:bg-neutral-800 p-4 rounded-[5px] cursor-pointer"
+            >
+              <div class="grid grid-cols-12">
+                <div
+                  class="text-[12px] flex items-center justify-center col-span-2"
+                >
+                  {{ index + 1 }}
+                </div>
+                <div class="col-span-10 flex">
+                  <div
+                    class="w-[80px] h-[60px] bg-center bg-no-repeat bg-cover rounded-[5px]"
+                    :style="{ backgroundImage: `url(${item.image})` }"
+                  ></div>
+
+                  <div class="flex flex-col h-full pl-[8px] justify-between">
+                    <div class="">
+                      <div
+                        class="text-[8px] font-semibold uppercase inline-block px-2 py-1 bg-yellow-700/10 text-yellow-500 border border-yellow-700/30 rounded-[3px]"
+                      >
+                        {{ item.model }}
+                      </div>
+                    </div>
+                    <div
+                      class="text-white max-w-[220px] text-ellipsis overflow-hidden whitespace-nowrap text-[13px]"
+                    >
+                      {{ item.title }}
+                    </div>
+
+                    <div class="text-white/60 text-[10px] uppercase">
+                      {{ item.price ? `$ ${item.price}` : "free" }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-neutral-900 p-5 mt-[24px] rounded-lg">
+          <h3 class="uppercase font-semibold text-[13px]">
+            Community Creations
+          </h3>
+
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 gap-4 h-auto max-h-[2000px] overflow-hidden mt-[12px]"
+          >
+            <div
+              class="flex h-full gap-4 flex-col"
+              v-for="(item, index) in masonryView"
+              :key="index"
+            >
+              <div
+                class="cursor-pointer"
+                v-for="(product, productIndex) in item"
+                :key="productIndex"
+              >
+                <img
+                  :src="product.image"
+                  class="max-w-full rounded-lg"
+                  :alt="product.id"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -126,6 +197,7 @@
 
 <script setup lang="ts">
 import Flicking from "@egjs/vue3-flicking";
+
 const slider: any = ref(null);
 const activeSliderIndex: any = ref(0);
 
@@ -303,6 +375,159 @@ const generativeAiImageCategories = ref([
   "Digital Nomad Lifestyle",
 ]);
 
+const bestOfMonths = ref([
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: 1.99,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+  {
+    image:
+      "https://assets.promptbase.com/DALLE_IMAGES%2FKUdSsjKBLAfVJ1vUqfTJTO2dhZ32%2Fresized%2F1729775493990x_w_800x800.webp?alt=media&token=8ab2b91f-c89b-4459-8700-f729d82e4ea6",
+    title: "Atmospheric Anime Dark Dreams Unveiled",
+    model: "midjourney",
+    price: null,
+  },
+]);
+
+const products: Ref<any[]> = ref([]);
+
+const possibleImages = ref([
+  "https://images.pexels.com/photos/4488636/pexels-photo-4488636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://images.pexels.com/photos/4489767/pexels-photo-4489767.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
+  "https://images.pexels.com/photos/19499409/pexels-photo-19499409/free-photo-of-busy-automobile-workshop-mechanics-at-work-in-a-garage.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
+  "https://images.pexels.com/photos/2325447/pexels-photo-2325447.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/250591/pexels-photo-250591.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/1955134/pexels-photo-1955134.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/248159/pexels-photo-248159.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/2101187/pexels-photo-2101187.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/1420440/pexels-photo-1420440.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/1368382/pexels-photo-1368382.jpeg?auto=compress&cs=tinysrgb&w=800",
+  "https://images.pexels.com/photos/556669/pexels-photo-556669.jpeg?auto=compress&cs=tinysrgb&w=800",
+]);
+
+const masonryView: any = ref([]);
+
+const items = [
+  {
+    title: "Sed non ante non cras amet",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non sagittis leo. Vestibulum sit amet metus nec neque dignissim dapibus.",
+    image: "https://picsum.photos/id/1015/600/600",
+  },
+  {
+    title: "Curabitur sit amet nunc",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id mollis erat. Aliquam erat volutpat. Nunc erat lacus, rhoncus nec.",
+    image: "https://picsum.photos/id/1019/600/700",
+  },
+  {
+    title: "Proin pharetra, ante metus",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac diam ac ex efficitur posuere. Pellentesque cursus pellentesque risus, non.",
+    image: "https://picsum.photos/id/1039/600/800",
+  },
+  {
+    title: "Cras pharetra non enim a",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi malesuada varius nibh, a malesuada nisi feugiat eget. Aenean convallis semper.",
+    image: "https://picsum.photos/id/1042/600/300",
+  },
+];
+
 function setSliderItemInterval() {
   if (!sliderItemInterval.value) {
     setInterval(() => {
@@ -322,8 +547,30 @@ function setSliderItemInterval() {
   }
 }
 
+function chunkProducts() {
+  const productLength = 32;
+
+  for (let i = 0; i < productLength; i++) {
+    const random = Math.floor(Math.random() * possibleImages.value.length);
+    products.value.push({
+      id: i,
+      image: possibleImages.value[random],
+    });
+  }
+
+  const chunks = useChunk(
+    products.value,
+    Math.round(products.value.length / 4)
+  );
+
+  masonryView.value = chunks;
+
+  console.log(chunks);
+}
+
 onMounted(() => {
   setSliderItemInterval();
+  chunkProducts();
 });
 
 onUnmounted(() => {
@@ -334,6 +581,14 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.masonry-item::before {
+  padding-bottom: 100%;
+  content: "";
+  display: inline-block;
+  vertical-align: top;
+  height: auto;
+}
+
 .sliderCover {
   background-image: linear-gradient(
       90deg,

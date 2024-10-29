@@ -5,7 +5,7 @@
     }"
   >
     <div
-      class="__headerSection fixed top-0 left-0 w-full z-9999 bg-neutral-900 border-b border-neutral-600/30"
+      class="__headerSection fixed top-0 left-0 w-full z-[9999] bg-neutral-900 border-b border-neutral-600/30"
     >
       <div class="relative w-full">
         <div class="container mx-auto p-4">
