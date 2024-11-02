@@ -143,11 +143,14 @@
       </div>
     </div>
     <slot />
+
+    <Footer />
   </a-config-provider>
 </template>
 
 <script lang="ts" setup>
 import { theme } from "ant-design-vue";
+import Footer from "@/components/shared/Footer.vue";
 
 const menuItems = ref([
   {

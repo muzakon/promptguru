@@ -18,6 +18,8 @@
     "@pinia/nuxt": "^0.5.5",
     "ant-design-vue": "^4.2.5",
     "dayjs-nuxt": "^2.1.11",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
     "nuxt": "^3.13.2",
     "nuxt-lodash": "^2.5.3",
     "vue": "latest",
