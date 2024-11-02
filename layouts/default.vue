@@ -198,6 +198,6 @@ const menuBarItems = ref([
   width: 100%;
   background-color: transparent !important;
   border-radius: 0;
-  padding-top: 12px;
+  padding-top: 11px;
 }
 </style>

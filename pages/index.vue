@@ -115,79 +115,102 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="bg-neutral-900 p-5 mt-[24px] rounded-lg">
-          <h3 class="uppercase font-semibold text-[13px]">
-            Bests of the month
-          </h3>
+      <div class="bg-neutral-900 p-5 mt-[24px] rounded-lg">
+        <h3 class="uppercase font-semibold text-[13px]">Bests of the month</h3>
 
-          <div class="mt-3 grid grid-rows-5 grid-flow-col gap-3">
-            <div
-              v-for="(item, index) in bestOfMonths"
-              :key="index"
-              class="hover:bg-neutral-800 p-4 rounded-[5px] cursor-pointer"
-            >
-              <div class="grid grid-cols-12">
+        <div class="mt-3 grid grid-rows-5 grid-flow-col gap-3">
+          <div
+            v-for="(item, index) in bestOfMonths"
+            :key="index"
+            class="hover:bg-neutral-800 p-4 rounded-[5px] cursor-pointer"
+          >
+            <div class="grid grid-cols-12">
+              <div
+                class="text-[12px] flex items-center justify-center col-span-2"
+              >
+                {{ index + 1 }}
+              </div>
+              <div class="col-span-10 flex">
                 <div
-                  class="text-[12px] flex items-center justify-center col-span-2"
-                >
-                  {{ index + 1 }}
-                </div>
-                <div class="col-span-10 flex">
-                  <div
-                    class="w-[80px] h-[60px] bg-center bg-no-repeat bg-cover rounded-[5px]"
-                    :style="{ backgroundImage: `url(${item.image})` }"
-                  ></div>
+                  class="w-[80px] h-[60px] bg-center bg-no-repeat bg-cover rounded-[5px]"
+                  :style="{ backgroundImage: `url(${item.image})` }"
+                ></div>
 
-                  <div class="flex flex-col h-full pl-[8px] justify-between">
-                    <div class="">
-                      <div
-                        class="text-[8px] font-semibold uppercase inline-block px-2 py-1 bg-yellow-700/10 text-yellow-500 border border-yellow-700/30 rounded-[3px]"
-                      >
-                        {{ item.model }}
-                      </div>
-                    </div>
+                <div class="flex flex-col h-full pl-[8px] justify-between">
+                  <div class="">
                     <div
-                      class="text-white max-w-[220px] text-ellipsis overflow-hidden whitespace-nowrap text-[13px]"
+                      class="text-[8px] font-semibold uppercase inline-block px-2 py-1 bg-yellow-700/10 text-yellow-500 border border-yellow-700/30 rounded-[3px]"
                     >
-                      {{ item.title }}
+                      {{ item.model }}
                     </div>
+                  </div>
+                  <div
+                    class="text-white max-w-[220px] text-ellipsis overflow-hidden whitespace-nowrap text-[13px]"
+                  >
+                    {{ item.title }}
+                  </div>
 
-                    <div class="text-white/60 text-[10px] uppercase">
-                      {{ item.price ? `$ ${item.price}` : "free" }}
-                    </div>
+                  <div class="text-white/60 text-[10px] uppercase">
+                    {{ item.price ? `$ ${item.price}` : "free" }}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="bg-neutral-900 p-5 mt-[24px] rounded-lg">
-          <h3 class="uppercase font-semibold text-[13px]">
-            Community Creations
-          </h3>
+      <div class="bg-neutral-900 p-5 mt-[24px] rounded-lg">
+        <h3 class="uppercase font-semibold text-[13px]">Logo & Icons</h3>
 
+        <div class="mt-3 grid grid-cols-3 gap-3"></div>
+      </div>
+
+      <div class="bg-neutral-900 p-5 mt-[24px] rounded-lg relative">
+        <h3 class="uppercase font-semibold text-[13px]">Community Creations</h3>
+
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-4 invisible absolute left-0 top-0 w-full p-5"
+        >
+          <div id="fakeGrid"></div>
+        </div>
+
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-4 h-auto max-h-[2000px] overflow-hidden mt-[12px]"
+        >
           <div
-            class="grid grid-cols-2 md:grid-cols-4 gap-4 h-auto max-h-[2000px] overflow-hidden mt-[12px]"
+            class="flex h-full gap-4 flex-col"
+            v-for="(item, index) in masonryView"
+            :key="index"
           >
-            <div
-              class="flex h-full gap-4 flex-col"
-              v-for="(item, index) in masonryView"
-              :key="index"
+            <Popper
+              v-for="(product, productIndex) in item"
+              :key="productIndex"
+              hover
+              :open-delay="1000"
+              :close-delay="500"
+              :offset-distance="`-${fakeGridWidth}px`"
+              :offset-skid="'0px'"
+              placement="left-start"
+              @open:popper="showPopper = true"
+              @close:popper="showPopper = false"
             >
-              <div
-                class="cursor-pointer"
-                v-for="(product, productIndex) in item"
-                :key="productIndex"
-              >
+              <template #content>
+                <div class="h-[500px] w-[268px]">
+                  This is the Popper content
+                </div>
+              </template>
+              <div class="cursor-pointer">
                 <img
                   :src="product.image"
                   class="max-w-full rounded-lg"
                   :alt="product.id"
+                  :id="`masonryImage_${index}${productIndex}`"
                 />
               </div>
-            </div>
+            </Popper>
           </div>
         </div>
       </div>
@@ -197,9 +220,12 @@
 
 <script setup lang="ts">
 import Flicking from "@egjs/vue3-flicking";
+import Popper from "vue3-popper";
 
 const slider: any = ref(null);
 const activeSliderIndex: any = ref(0);
+const showPopper = ref(false);
+const fakeGridWidth: Ref<number> = ref(0);
 
 const sliderItems = ref([
   {
@@ -564,13 +590,17 @@ function chunkProducts() {
   );
 
   masonryView.value = chunks;
-
-  console.log(chunks);
 }
 
 onMounted(() => {
   setSliderItemInterval();
   chunkProducts();
+
+  const fakeGrid: HTMLElement | null = document.getElementById("fakeGrid");
+  if (fakeGrid) {
+    fakeGridWidth.value = fakeGrid.clientWidth;
+    console.log(fakeGridWidth.value);
+  }
 });
 
 onUnmounted(() => {
